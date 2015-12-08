@@ -1,9 +1,18 @@
-import scalafx.Includes._
-import scalafx.application.JFXApp
-import scalafx.scene.Scene
-import scalafx.scene.paint.Color
-import scalafx.scene.shape.Rectangle
+import javafx.application.Application
+import javafx.fxml.FXMLLoader
+import javafx.scene.{Scene, Parent}
+import javafx.stage.Stage
 
-object Main extends JFXApp {
+object Main {
+  def main(args: Array[String]) {
+    Application.launch(classOf[Main], args: _*)
+  }
+}
 
+class Main extends Application {
+  override def start(primaryStage: Stage): Unit = {
+    primaryStage.setTitle("Test")
+    primaryStage.setScene(new Scene(FXMLLoader.load(getClass.getResource("/main.fxml")), 200, 200))
+    primaryStage.show()
+  }
 }

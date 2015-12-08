@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.web.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1300.0" prefWidth="1800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <ListView fx:id="serverListView" layoutX="1566.0" layoutY="111.0" prefHeight="1163.0" prefWidth="213.0" />
+    <ComboBox fx:id="serverCombobox" layoutX="1566.0" layoutY="60.0" prefHeight="39.0" prefWidth="213.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="콜렉터 서버들" />
+          <String fx:value="에러로그 수집서버들" />
+          <String fx:value="스톰 마스터 서버들" />
+          <String fx:value="스톰 노드서버들" />
+          <String fx:value="카프카 서버들" />
+          <String fx:value="퍼시스턴트 레디스서버들" />
+          <String fx:value="Non 퍼시스턴트 레디스서버들" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="1566.0" layoutY="28.0" text="서버 목록" />
+      <TabPane layoutX="14.0" layoutY="15.0" prefHeight="1272.0" prefWidth="1539.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="관리 페이지들">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1159.0" prefWidth="1538.0">
+                     <children>
+                      <Button fx:id="redisBtn" layoutX="9.0" layoutY="9.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="139.0" text="REDIS " />
+                      <Button fx:id="stormBtn" layoutX="160.0" layoutY="9.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="139.0" text="STORM" />
+                      <Button fx:id="deployBtn" layoutX="313.0" layoutY="9.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="139.0" text="DEPLOY" />
+                      <Button fx:id="kafkaBtn" layoutX="467.0" layoutY="9.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="139.0" text="KAFKA" />
+                      <Button fx:id="wikiBtn" layoutX="622.0" layoutY="9.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="139.0" text=" WIKI" />
+                      <Button fx:id="agitBtn" layoutX="775.0" layoutY="9.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="139.0" text="AGIT" />
+                      <WebView fx:id="webView" layoutX="8.0" layoutY="58.0" prefHeight="1172.0" prefWidth="1524.0" />
+                        <Button fx:id="reloadBtn" layoutX="1349.0" layoutY="9.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" text="새로고침" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="재처리">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                      <TextArea fx:id="logTextArea" layoutX="9.0" layoutY="63.0" prefHeight="1165.0" prefWidth="1520.0" wrapText="true" />
+                      <Label layoutX="14.0" layoutY="26.0" text="실시간 프로세스 재처리 :" />
+                      <ComboBox fx:id="rejobCombobox" layoutX="184.0" layoutY="14.0" prefHeight="39.0" prefWidth="305.0">
+                        <items>
+                          <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="프로필API 연동프로세스" />
+                            <String fx:value="프리퀀시 프로세스" />
+                            <String fx:value="레디스 타게팅 캐시 생성 프로세스" />
+                            <String fx:value="ELASTICSEARCH 데이터 전달 프로세스" />
+                            <String fx:value="결재 연동프로세스" />
+                            <String fx:value="리워드 확인 프로세스" />
+                            <String fx:value="리워드 대상 콜백 프로세스" />
+                          </FXCollections>
+                        </items>
+                      </ComboBox>
+                      <Button fx:id="fileBtn" layoutX="513.0" layoutY="14.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="77.0" text="FILE" />
+                      <Button fx:id="rejobBtn" layoutX="613.0" layoutY="14.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="111.0" text="START" textFill="RED" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="캐시 입/출력">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea fx:id="redisConsoleTextArea" layoutX="14.0" layoutY="69.0" prefHeight="1152.0" prefWidth="1509.0" />
+                        <TextField fx:id="redisCacheKeyTextField" layoutX="593.0" layoutY="19.0" prefHeight="26.0" prefWidth="249.0" text="T0:APP:60491:4622441"/>
+                        <Label layoutX="479.0" layoutY="24.0" text="CACHE KEY :" />
+                        <Button fx:id="redisGetBtn" layoutX="872.0" layoutY="19.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="134.0" text="GET" />
+                        <ComboBox fx:id="redisServerComboBox" layoutX="21.0" layoutY="19.0" prefHeight="26.0" prefWidth="206.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Persist" />
+                                    <String fx:value="NonPersist" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                         <ComboBox fx:id="redisCommandComboBox" layoutX="247.0" layoutY="19.0" prefHeight="26.0" prefWidth="206.0">
+                             <items>
+                                 <FXCollections fx:factory="observableArrayList">
+                                     <String fx:value="GET" />
+                                     <String fx:value="HALLGET" />
+                                 </FXCollections>
+                             </items>
+                         </ComboBox>
+                     </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+  </children>
+</AnchorPane>
