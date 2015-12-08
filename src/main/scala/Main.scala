@@ -1,17 +1,16 @@
 import java.awt.{Toolkit, SystemTray}
 import javafx.application.{Platform, Application}
 import javafx.fxml.FXMLLoader
-import javafx.scene.{Scene, Parent}
+import javafx.scene.media.{MediaPlayer, Media, MediaView}
+import javafx.scene.{Node, Scene, Parent}
 import javafx.stage.Stage
-import java.awt.AWTException;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.Image;
+import java.awt.Image
+;
 
 object Main {
   def main(args: Array[String]) {
@@ -24,10 +23,17 @@ class Main extends Application {
     Platform.setImplicitExit(false)
 
     primaryStage.setTitle("Test")
-    primaryStage.setScene(new Scene(FXMLLoader.load(getClass.getResource("/main.fxml")), 200, 200))
+    primaryStage.setScene(new Scene(FXMLLoader.load(getClass.getResource("/main.fxml")), 1800, 1000))
     primaryStage.show()
 
     createTrayIcon(primaryStage)
+
+    //val mediaPlayer:MediaManager = new MediaManager("http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv")
+    val mediaPlayer:MediaManager = new MediaManager("http://podcastdown.sbs.co.kr/powerfm/2015/12/power-pc-20151207(11-00)-2.mp3?vod_id=V0000365040&podcast_id=P0000000222")
+
+    val mediaView:MediaView = primaryStage.getScene.lookup("#mediaView").asInstanceOf[MediaView]
+    mediaView.setMediaPlayer(mediaPlayer.mediaPlayer)
+    mediaPlayer.play
   }
 
   def createTrayIcon(stage:Stage): Unit = {
